@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="패키지이름.파일명">
+    <select id="insertMember">
+        INSERT INTO MEMBERS (nickname, password, username, email, created_at, updated_at)
+        VALUES (#{nickname}, #{password}, #{username}, #{email}, NOW(), NOW())
+    </select>
+</mapper>
