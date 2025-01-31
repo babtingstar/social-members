@@ -10,13 +10,13 @@
 <body>
 <form id="signForm" action="/api/signup" method="post">
     <label for="nickname">닉네임:</label>
-    <input type="text" id="nickname" name="nickname" th:text="${nickname}" required><br>
+    <input type="text" id="nickname" name="nickname" th:value="${nickname}" disabled required><br>
 
     <label for="username">이름:</label>
-    <input type="text" id="username" name="username" th:text="${nickname}"required><br>
+    <input type="text" id="username" name="username" th:value="${name}" disabled required><br>
 
     <label for="email">이메일:</label>
-    <input type="email" id="email" name="email" th:text="${nickname}" required><br>
+    <input type="email" id="email" name="email" th:value="${email}" disabled required><br>
 
     <label for="password">비밀번호:</label>
     <input type="password" id="password" name="password" required><br>
@@ -37,11 +37,10 @@
         let password = $("#password").val();
         // 비밀번호 6자리 이상인지 체크
         // 6자리 미만이면 비밀번호는 최소 6자리 이상이어야 합니다. alert 돌려보내기
-        if(password.charAt(5) == null){
+        if(password.length < 6){
             alert("비밀번호는 최소 6자리 이상이어야 합니다.");
             return;
         }
-
         $.ajax({
             url: "/api/signup",
             method: "POST",
@@ -55,6 +54,8 @@
             success: function(data) {
                 // 회원가입 성공시, 회원가입이 완료되었습니다.
                 // success.html 로 이동
+                alert("회원가입이 완료되었습니다.");
+                window.location.href = "/success.html"
             },
             error: function() {
                 alert("회원가입에 실패했습니다. 다시 시도하시거나 고객센터로 문의바랍니다.");
